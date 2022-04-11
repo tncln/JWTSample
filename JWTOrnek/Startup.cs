@@ -35,7 +35,8 @@ namespace JWTOrnek
                     ValidAudience = "http://localhost",
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("ademtunçalýn")),
                     ValidateIssuerSigningKey = true, //
-                    ValidateLifetime = true
+                    ValidateLifetime = true,
+                    ClockSkew=TimeSpan.Zero
                 };
             });
             services.AddControllers();
@@ -50,7 +51,7 @@ namespace JWTOrnek
             }
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
